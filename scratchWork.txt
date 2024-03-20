@@ -1,0 +1,37 @@
+sortTwoStrings :: String -> String -> [String]
+sortTwoStrings str1 str2 =
+  let sorted1 = sortString str1
+      sorted2 = sortString str2
+  in [sorted1, sorted2]
+
+isCharEqChar :: Char -> Char -> Bool
+isCharEqChar c1 c2 = c1 == c2
+
+charFreq :: String -> [(Char, Int)]
+charFeq xs = myFoldr f [] ( xs)
+
+charFreqHelper :: String -> String -> [(Char, Int)]
+charFreqHelper [] acc = acc
+charFreqHelper (x:xs)
+
+-- charCounter :: String -> (Char) -> (Char, Int)
+-- charCounter [] acc = acc
+-- charCounter (x:xs) =
+
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter p xs = helper xs []
+  where helper [] acc = acc
+        helper (x:xs) = acc
+          | p x       = helper xs (x:acc)
+          | otherwise = helper xs acc
+
+fElem :: (a, b) -> a
+fElem (x, _) = x
+
+myPartition :: (a -> Bool) -> [a] -> ([a], [a])
+myPartition p xs = (myFilter p xs, myFilter (not . p) xs)
+
+myFoldr :: (a -> b -> b) -> b -> [a] -> b
+myFoldr f base xs = helper xs base
+  where helper [] acc = acc
+        helper (x:xs) acc = helper xs (f x acc)
